@@ -2,5 +2,19 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.idea/.idea.DemoEmployeeManagementSystem/.idea
-/.vs/DemoEmployeeManagementSystem
+.vs/
+.idea/
+*.zip
+.github/
+.git/
+.bundle
+BaseLibrary/bin
+BaseLibrary/obj
+Client/bin
+Client/obj
+ClientLibrary/bin
+ClientLibrary/obj
+Server/bin
+Server/obj
+ServerLibrary/bin
+ServerLibrary/obj
