@@ -10,8 +10,8 @@ namespace ServerLibrary.Repositories
 {
     public class BaseRepository
     {
-        public static GeneralResponse NotFound() => new(false, "Sorry department not found");
-        public static GeneralResponse Success() => new(true, "Operation successful");
+        protected static GeneralResponse NotFound() => new(false, "Sorry department not found");
+        protected static GeneralResponse Success() => new(true, "Operation successful");
 
     }
 }

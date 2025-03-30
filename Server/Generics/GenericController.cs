@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
 
-namespace Server.Controllers
+namespace Server.Controllers.Generics
 {
     [Route("api/[controller]")]
     [ApiController]
