@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServerLibrary.Repositories.Contracts;
+using Server.Generics;
 
 namespace Server.Controllers
 {

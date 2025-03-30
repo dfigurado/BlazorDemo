@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseLibrary.DTOs
+namespace BaseLibrary.DTOs.Base
 {
     public class BaseDepartmentDto
     {

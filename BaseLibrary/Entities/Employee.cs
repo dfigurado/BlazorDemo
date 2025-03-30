@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BaseLibrary.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace BaseLibrary.Entities
 {

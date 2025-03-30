@@ -11,7 +11,7 @@ using Syncfusion.Blazor;
 using Syncfusion.Blazor.Popups;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCf0x0TXxbf1x1ZF1MYlxbRndPMyBoS35Rc0ViW35eeHZVRGFdUU11");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmpCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXxdcHVURGFZU0xwVktWYUE=");
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 

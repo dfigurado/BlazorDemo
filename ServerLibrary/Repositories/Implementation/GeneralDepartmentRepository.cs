@@ -1,7 +1,8 @@
 ﻿using BaseLibrary.Entities;
-using BaseLibrary.Response;
+using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Persistence.Context;
+using ServerLibrary.Repositories.Base;
 using ServerLibrary.Repositories.Contracts;
 
 namespace ServerLibrary.Repositories.Implementation
@@ -21,7 +22,7 @@ namespace ServerLibrary.Repositories.Implementation
         public async Task<List<GeneralDepartment>> GetAll()
         {
             var result = await appDbContext.GeneralDepartments.ToListAsync();
-            return result;
+            return result!;
         }
 
         public async Task<GeneralDepartment> GetById(int id)

@@ -1,12 +1,6 @@
-﻿using BaseLibrary.Response;
-using ServerLibrary.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BaseLibrary.Responses;
 
-namespace ServerLibrary.Repositories
+namespace ServerLibrary.Repositories.Base
 {
     public class BaseRepository
     {

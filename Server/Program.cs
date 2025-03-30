@@ -47,20 +47,26 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
+
+//General Department / Department / Branch
 builder.Services.AddScoped<IGenericRepositoryInterface<GeneralDepartment>, GeneralDepartmentRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Department>, DepartmentRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<City>, CityRepository>();
+
+//Country / City / Town
 builder.Services.AddScoped<IGenericRepositoryInterface<Branch>, BranchRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Area>, AreaRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Country>, CountryRepository>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowBlazorWasm", 
-        builder => builder.WithOrigins("https://localhost:7170","http://localhost:5206", "http://localhost:50548")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials());
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("https://localhost:7170", "http://localhost:60189")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+    });
 });
 var app = builder.Build();
 
@@ -72,7 +78,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowBlazorWasm");
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 

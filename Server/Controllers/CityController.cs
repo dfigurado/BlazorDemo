@@ -1,6 +1,7 @@
 ﻿using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Server.Generics;
 using ServerLibrary.Repositories.Contracts;
 
 namespace Server.Controllers

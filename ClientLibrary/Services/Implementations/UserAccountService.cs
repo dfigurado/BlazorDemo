@@ -1,5 +1,5 @@
 ﻿using BaseLibrary.DTOs;
-using BaseLibrary.Response;
+using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
 using ClientLibrary.Services.Contracts;
 using System.Net.Http.Json;
@@ -36,8 +36,7 @@ namespace ClientLibrary.Services.Implementations
 
             return await result.Content.ReadFromJsonAsync<LoginResponse>();
         }
-
-
+        
         public async Task<WeatherForecast[]> GetWeatherForecasts()
         {
             var httpClient = await getHttpClient.GetPrivateHttpClient();

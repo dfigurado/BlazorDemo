@@ -1,7 +1,8 @@
 ﻿using BaseLibrary.Entities;
-using BaseLibrary.Response;
+using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.Persistence.Context;
+using ServerLibrary.Repositories.Base;
 using ServerLibrary.Repositories.Contracts;
 
 namespace ServerLibrary.Repositories.Implementation

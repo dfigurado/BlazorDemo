@@ -22,7 +22,7 @@ namespace Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> SignInAsync(Login user)
         {
-            if (user == null) return BadRequest("Model is empty");
+            if (user is null) return BadRequest("Model is empty");
             var result = await userAccount.SignInAsync(user);
             return Ok(result);
         }
@@ -30,7 +30,7 @@ namespace Server.Controllers
         [HttpPost("refresh")]
         public async Task<IActionResult> RefreshTokenAsync(RefreshToken token)
         {
-            if (token == null) return BadRequest("Model is empty");
+            if (token is null) return BadRequest("Model is empty");
             var result = await userAccount.RefreshTokenAsync(token);
             return Ok(result);
         }

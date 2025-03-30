@@ -1,6 +1,6 @@
 ﻿using BaseLibrary.DTOs;
 using BaseLibrary.Entities;
-using BaseLibrary.Response;
+using BaseLibrary.Responses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

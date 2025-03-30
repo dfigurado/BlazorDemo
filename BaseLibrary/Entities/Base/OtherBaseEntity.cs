@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BaseLibrary.Entities
+namespace BaseLibrary.Entities.Base
 {
     public class OtherBaseEntity
     {

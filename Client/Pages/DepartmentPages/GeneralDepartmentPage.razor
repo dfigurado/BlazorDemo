@@ -1,7 +1,9 @@
-﻿@using Client.ApplicationStates
+﻿@using BaseLibrary.Entities
+@using Client.ApplicationStates
 @implements IDisposable
-@inject DepartmentState departmentState
-@if(departmentState.ShowGeneralDepartment)
+@inject DepartmentState DepartmentState
+
+@if(DepartmentState.ShowGeneralDepartment)
 {
     <div class="container mt-5">
         <div class="row">
@@ -51,23 +53,23 @@
         </div>
     </div>
 }
-<GeneralDepartmentDialog @ref="generalDepartmentDialog"/>
+<GeneralDepartmentDialog @ref="_generalDepartmentDialog"/>
 @code {
-    GeneralDepartmentDialog? generalDepartmentDialog;
-    GeneralDepartmentDto department = new();
+    GeneralDepartmentDialog? _generalDepartmentDialog;
+    GeneralDepartment _department = new();
 
     protected override void OnInitialized()
     {
-        departmentState.GeneralDepartmentAction += StateHasChanged;
+        DepartmentState.GeneralDepartmentAction += StateHasChanged;
     }
 
     void OpenDialog()
     {
-        generalDepartmentDialog?.OpenDialog();
+        _generalDepartmentDialog?.OpenDialog();
     }
 
     public void Dispose()
     {
-        departmentState.GeneralDepartmentAction -= StateHasChanged;
+        DepartmentState.GeneralDepartmentAction -= StateHasChanged;
     }
 }
