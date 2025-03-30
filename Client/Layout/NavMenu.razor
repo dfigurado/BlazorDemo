@@ -1,6 +1,6 @@
 ﻿@page "/nav"
 @using Client.ApplicationStates
-@inject DepartmentState departmentState
+@inject AllState departmentState
 <AuthorizeView>
     <Authorized>
         <div class="top-row ps-3 navbar navbar-dark">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" @onclick="ShowAdminMenuContainer" href="javascript:void()">
-                        <div class="hstack gap-1">
+                        <div class="hstack">
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>
                             <span>Adiministration</span>
                         </div>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="nav-item px-3" style="margin-top:@DepartmentMargin">
                     <NavLink class="nav-link p-2" @onclick="ShowDepartmentContainer" style="cursor:pointer" href="javascript:void()">
-                        <div class="hstack gap-1">
+                        <div class="hstack">
                             <span class="bi bi-backpack4-fill fs-3 text-center" aria-hidden="true" style="margin-top:-2rem"></span>
                             <span>Department</span>
                         </div>

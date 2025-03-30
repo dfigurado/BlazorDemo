@@ -51,12 +51,12 @@ builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
 //General Department / Department / Branch
 builder.Services.AddScoped<IGenericRepositoryInterface<GeneralDepartment>, GeneralDepartmentRepository>();
 builder.Services.AddScoped<IGenericRepositoryInterface<Department>, DepartmentRepository>();
-builder.Services.AddScoped<IGenericRepositoryInterface<City>, CityRepository>();
-
-//Country / City / Town
 builder.Services.AddScoped<IGenericRepositoryInterface<Branch>, BranchRepository>();
-builder.Services.AddScoped<IGenericRepositoryInterface<Area>, AreaRepository>();
+
+//Country / City / Area 
 builder.Services.AddScoped<IGenericRepositoryInterface<Country>, CountryRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<City>, CityRepository>();
+builder.Services.AddScoped<IGenericRepositoryInterface<Area>, AreaRepository>();
 
 builder.Services.AddCors(options =>
 {

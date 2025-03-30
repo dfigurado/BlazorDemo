@@ -1,9 +1,6 @@
-﻿@using BaseLibrary.Entities
-@using Client.ApplicationStates
-@implements IDisposable
-@inject DepartmentState DepartmentState
+﻿@implements IDisposable
 
-@if(DepartmentState.ShowGeneralDepartment)
+@if(allState.ShowGeneralDepartment)
 {
     <div class="container mt-5">
         <div class="row">
@@ -12,7 +9,7 @@
                     <div class="card-header">
                         <h4 class="float-start">General Department</h4>
                         <button class="btn btnbtn-outline-success float-end" @onclick="OpenDialog">
-                            <i class="bi bi-plus-circle-dotted"></i> Add Branch
+                            <i class="bi bi-plus-circle-dotted"></i> Add Department
                         </button>
                     </div>
                     <div class="card-header">
@@ -53,14 +50,24 @@
         </div>
     </div>
 }
-<GeneralDepartmentDialog @ref="_generalDepartmentDialog"/>
+<GeneralDepartmentDialog @ref="_generalDepartmentDialog" 
+                         HandleSaveOperationEvent="HandleSaveOperationEvent" 
+                         GeneralDepartment="GeneralDepartment" />
 @code {
     GeneralDepartmentDialog? _generalDepartmentDialog;
-    GeneralDepartment _department = new();
+    GeneralDepartment GeneralDepartment = new();
+    public string Title { get; set; } = "Add";
+    public List<GeneralDepartment> GeneralDepartments { get; set; } = new();
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        DepartmentState.GeneralDepartmentAction += StateHasChanged;
+        await GetGeneralDepartments();
+        allState.Action += StateHasChanged;
+    }
+
+    private async Task GetGeneralDepartments()
+    {
+        GeneralDepartments = await generalDepartmentService.GetAll(Constants.GeneralDepartmentBaseUrl);
     }
 
     void OpenDialog()
@@ -68,8 +75,50 @@
         _generalDepartmentDialog?.OpenDialog();
     }
 
+    private async Task HandleSaveOperationEvent(GeneralDepartment generalDepartment)
+    {
+        bool successCheck = false;
+        if (generalDepartment.Id > 0)
+        {
+            var result = await generalDepartmentService.Update(GeneralDepartment, Constants.GeneralDepartmentBaseUrl);
+            successCheck = await DisplayMessage(result.Flag, result.Message);
+        }
+        else
+        {
+            var response = await generalDepartmentService.Insert(GeneralDepartment, Constants.GeneralDepartmentBaseUrl);
+            successCheck = await DisplayMessage(response.Flag, response.Message);
+        }
+        if (successCheck)
+        {
+            await GetGeneralDepartments();
+            GeneralDepartment = new();
+            _generalDepartmentDialog?.ChangeTitle("Add");
+        }
+    }
+
+    private void EditClicked(GeneralDepartment dpt)
+    {
+        _generalDepartmentDialog?.ChangeTitle("Update");
+        GeneralDepartment = dpt;
+        OpenDialog();
+    }
+
+    private async Task<bool> DisplayMessage(bool flag, string message)
+    {
+        if (flag)
+        {
+            await dialogService.AlertAsync(message, "Success!");
+            return true;
+        }
+        else
+        {
+            await dialogService.AlertAsync(message, "Something went wrog !");
+            return false;
+        }
+    }
+
     public void Dispose()
     {
-        DepartmentState.GeneralDepartmentAction -= StateHasChanged;
+        allState.Action -= StateHasChanged;
     }
 }
