@@ -9,8 +9,7 @@
       },
       {
         "Path": "Client\\Client.csproj",
-        "Action": "Start",
-        "DebugTarget": "https"
+        "Action": "Start"
       }
     ]
   }

@@ -1,0 +1,68 @@
+﻿<h3>Department Dialog</h3>
+<SfDialog Width="280px" IsModal="true" ShowCloseIcon="true" @bind-Visible="IsVisible">
+    <DialogEvents OnOpen="OpenDialog"></DialogEvents>
+    <DialogTemplates>
+        <Header>@Title Department</Header>
+        <Content>
+            <EditForm MOdal="Department" Enhance OnSubmit="Save" />
+            <div class="card border-success">
+                <div class="card-body">
+                    <label class="form-group">
+                        <label class="form-label">Id</label>
+                        <input @bind="Department.Id" class="form-control" disabled/>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <InputText class="form-control" @bind-Value="Department.Name" />
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <label class="form-label">Select General Departmet</label>
+                    @if (Department.GeneralDepartment != null)
+                    {
+                       string selected = Department.GeneralDepartment.Name;
+                       <SfDropDownList TValu="string">
+
+                       </SfDropDownList>
+                    }
+                </div>
+            </div>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+@code {
+    [Parameter] public Department Department { get; set; } = new();
+    [Parameter] public List<GeneralDepartment> GeneralDepartments { get; set; }
+    [Parameter] public EventCallback<Department> HandleSaveOperationEvent { get; set; }
+
+    private bool IsVisible { get; set; } = false;
+    public string Title { get; set; } = "Add";
+    public void OpenDialog()
+    {
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    public async void Save()
+    {
+        if (string.IsNullOrEmpty(Department.Name))
+        {
+            await dialogService.AlertAsync("Please enter a department name", "Info");
+        }
+        else
+        {
+            await HandleSaveOperationEvent.InvokeAsync(Department);
+        }
+    }
+
+    public void ChangeTitle(string title)
+    {
+        Title = title;
+    }
+
+    public void OnValueChanged(ChangeEventArgs<string, GeneralDepatment> args)
+    {
+        Department.GeneralDepartmentId = Convert.ToInt32(args.Value);
+    }
+}
